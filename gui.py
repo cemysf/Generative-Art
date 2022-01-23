@@ -4,10 +4,9 @@
 
 import sys
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QShortcut
-from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel
 
-from gui_experiments import FUNCTION_IN_USE
+from gui_experiments import FUNCTION_IN_USE, ArtFuncExperiment
 
 GUI_WIDTH = 800
 GUI_HEIGHT = 600
@@ -18,7 +17,7 @@ class Canvas(QLabel):
         self.parentWidget().showArtwork()
 
 class App(QWidget):
-    def __init__(self, artFunc):
+    def __init__(self, artFunc: ArtFuncExperiment):
         super().__init__()
         self.width = GUI_WIDTH
         self.height = GUI_HEIGHT
