@@ -1,0 +1,4 @@
+numpy==1.22.1
+Pillow==9.0.0
+PyQt5==5.15.6
+PyQt5-sip==12.9.0
