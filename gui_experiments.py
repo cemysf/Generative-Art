@@ -1,3 +1,7 @@
+"""
+@author: cemysf
+"""
+
 from abc import ABC, abstractclassmethod
 from functools import partial
 import random 
