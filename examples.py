@@ -165,7 +165,7 @@ def draw_flow_fields(*args, seed=random.randint(0, 100000000), colors = [200, 14
 
 @printCallParameters
 @printElapsed
-def draw_flow_field(width, height, seed=random.randint(0, 100000000), color=200):
+def draw_flow_field(width, height, seed=random.randint(0, 100000000), color=200, step=0.001, n_x=2, n_y=2):
     # Set the random seed for repeatability
     np.random.seed(seed)
 
@@ -183,11 +183,11 @@ def draw_flow_field(width, height, seed=random.randint(0, 100000000), color=200)
     num = 1
     for j in range(num):
         print('Creating Noise... (%s/%s)' % (j + 1, num))
-        p_noise = Perlin2D(width, height, 2, 2)
+        p_noise = Perlin2D(width, height, n_x=n_x, n_y=n_y)
         print('Noise Generated! (%s/%s)' % (j + 1, num))
 
         MAX_LENGTH = 2 * width
-        STEP_SIZE = 0.001 * max(width, height)
+        STEP_SIZE = step * max(width, height)
         NUM = int(width * height / 1000)
         POINTS = [(random.randint(0, width - 1), random.randint(0, height - 1)) for i in range(NUM)]
 
