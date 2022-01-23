@@ -2,7 +2,10 @@
 @author: The Absolute Tinkerer
 """
 
+from functools import wraps
+import inspect
 import os
+import time
 import math
 import numpy as np
 
@@ -34,6 +37,7 @@ def save(p, fname='image', folder='Images', extension='jpg', quality=100, overwr
 
     # fileName, format, quality [0 through 100]
     p.saveImage(imageFile, imageFile[-3:], quality)
+    print(f"saved image:{imageFile}")
 
 
 def Perlin2D(width, height, n_x, n_y, clampHorizontal=False, clampVertical=False):
@@ -122,3 +126,21 @@ def Perlin2D(width, height, n_x, n_y, clampHorizontal=False, clampVertical=False
 
     # Now perform the second dimension's linear interpolation to return value
     return u + t[:, :, 1] * (v - u)
+
+def printCallParameters(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"call func:{func.__name__}{inspect.signature(func)}, args:{args}, kwargs:{kwargs}")
+        return func(*args, **kwargs)
+    return wrapper
+
+
+def printElapsed(func):
+    @wraps(func)
+    def wrapper(*args, **kw):
+        start = time.time()
+        result = func(*args, **kw)
+        end = time.time()
+        print(f"func:{func.__name__} elapsed:{end-start:.4f} seconds")
+        return result
+    return wrapper

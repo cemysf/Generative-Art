@@ -37,3 +37,6 @@ class Painter(QPainter):
         self.end()
         if exit_code == 0:
             sys.exit(0)
+
+    def getImage(self):
+        return self.image
